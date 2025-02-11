@@ -1,10 +1,11 @@
-import { createContext, useState } from 'react'
+import { createContext, useContext, useState } from 'react'
 import imgDoge from '../assets/images/doge.jpg'
-import { TweetContext } from '../App'
+import { TweetContext, ThemeContext } from '../App'
 
 export default function CreateTweet() {
     const [content, setContent] = useState('')
     const context = createContext(TweetContext)
+    const themeContext = useContext(ThemeContext)
 
     const addTweet = (e) => {
         e.preventDefault()
@@ -23,7 +24,7 @@ export default function CreateTweet() {
     }
 
     return (
-        <div className={context.theme === 'dark' ? 'create-tweet dark' : 'create-tweet'}>
+        <div className={themeContext.theme === 'dark' ? 'create-tweet dark' : 'create-tweet'}>
             <form onSubmit={addTweet}>
                 <div className="avatar-section">
                     <div className="profile-icon"><img src={imgDoge}/></div>
